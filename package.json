@@ -1,0 +1,16 @@
+{
+  "name": "xo",
+  "version": "1.0.0",
+  "description": "it is a electron based \"tik tak toe\" game",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "rahul",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^26.2.2",
+    "eslint": "^8.49.0"
+  }
+}

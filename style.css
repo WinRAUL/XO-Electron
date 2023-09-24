@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(142, 249, 19, 0.831);
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 5px;
+    border: 2px solid #333;
+    background-color: #ff00008f;
+    padding: 5px;
+    margin: 5vw;
+    width: fit-content;
+    height: fit-content;
+}
+.cell {
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    width: 17vh;
+    height: 17vh;
+    margin: auto;
+    background-color: #ddff4d;
+    cursor: crosshair;
+}
+.cell:hover{
+    background-color: aquamarine;
+}
+
+.gameinfo{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgb(41 61 94);;
+    width: fit-content;
+}
+.gameinfo *{
+    align-items: center;
+    margin: 3px;
+    padding: 10px;
+    background-color: aqua;
+}
+#info{
+    color: rgb(95, 67, 16);
+    font-size: 4vh;
+    width: fit-content;
+    height: fit-content;
+}
+h1{
+    font-size: 6vh;
+}
+#reset{
+    width : fit-content;
+    height : fit-content;
+    font-size: 4vh;
+    border-radius: 10px;
+    color: #7e330a;
+}
+
+@media only screen and (max-width: 800px) {
+    .cell{
+        width: 14vh;
+        height: 14vh;
+    }
+    h1{
+        font-size: 6vw;
+    }
+}
