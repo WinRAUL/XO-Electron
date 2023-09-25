@@ -1,5 +1,26 @@
 let turn = "X";
 let gameover = false;
+const winSounds = [
+    new Audio("./static/win_calm.wav"),
+    new Audio("./static/win_hard.wav"),
+];
+const bgSounds = [
+    new Audio("./static/bg_calm_mix1.wav"),
+    new Audio("./static/bg_calm_mix2.wav"),
+    new Audio("./static/bg_saxophone.wav"),
+    new Audio("./static/bg_tension.wav"),
+];
+let bgMusic = bgSounds[0]; //default
+const playBg = ()=>{
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+    bgMusic = bgSounds[Math.floor(Math.random() * bgSounds.length)]
+    bgMusic.play()
+}
+window.addEventListener("load", () => {
+    playBg();
+    console.log("page is fully loaded");
+  });
 
 const changeTurn = ()=>{
     return turn === "X"?"0":"X";
@@ -30,6 +51,11 @@ const checkWin = ()=>{
         const c = boxTexts[win[2]].innerText;
         if( a === b && b === c && a !== ''){
                 gameover = true;
+                // bgMusic.pause();
+                playBg();
+                // bgMusic.currentTime = 0;
+                console.log("paused")
+                winSounds[0].play();
                 return;
         }
     })
