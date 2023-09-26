@@ -16,20 +16,51 @@ const playBg = ()=>{
     bgMusic.currentTime = 0;
     bgMusic = bgSounds[Math.floor(Math.random() * bgSounds.length)]
     bgMusic.play()
+    if(audioFlag == false)
+        bgMusic.muted = true;
 }
+let winMusic = winSounds[0];
+const playWin = ()=>{
+    bgMusic.pause();
+    winMusic = winSounds[Math.floor(Math.random() * winSounds.length)]
+    winMusic.play();
+    if(audioFlag==false)
+        winMusic.muted = true;
+}
+let audioFlag = true; //default in 'on'
+const soundImages = ['volume-up-fill.svg','volume-mute-fill.svg',0];
+// eslint-disable-next-line no-unused-vars
+const toggleAudio = ()=>{
+    audioFlag = !audioFlag
+    bgMusic.muted = audioFlag
+    winMusic.muted = audioFlag
+    
+    soundImages[2] = (soundImages[2] == 0) ? 1 : 0; //toggle index
+    const soundControl = document.querySelector("#soundControl img");
+    soundControl.src=`/assets/${soundImages[soundImages[2]]}`;
+
+
+}
+
 window.addEventListener("load", () => {
     playBg();
-    console.log("page is fully loaded");
-  });
+});
+
+setInterval(() => {
+    if(bgMusic.paused && winMusic.paused)
+        playBg();
+}, 3000);
 
 const changeTurn = ()=>{
     return turn === "X"?"0":"X";
 }
+
 const resetGame = ()=>{
     document.querySelectorAll(".boxText").forEach(e=>e.innerHTML = '');
+    document.getElementById("winner").style.display="none";
     turn = "X"
     document.getElementById("info").innerText = "Turn : "+turn;
-    console.log("reset");
+    console.log("game reset");
     gameover = false;
 }
 
@@ -51,11 +82,7 @@ const checkWin = ()=>{
         const c = boxTexts[win[2]].innerText;
         if( a === b && b === c && a !== ''){
                 gameover = true;
-                // bgMusic.pause();
-                playBg();
-                // bgMusic.currentTime = 0;
-                console.log("paused")
-                winSounds[0].play();
+                playWin();
                 return;
         }
     })
@@ -64,7 +91,7 @@ let cells = document.getElementsByClassName("cell");
 Array.from(cells).forEach(cell=>{
     let boxText = cell.querySelector(".boxText")
     cell.addEventListener('click', ()=>{
-        if(boxText.innerText === ''){
+        if(boxText.innerText === '' && gameover === false){
             boxText.innerText = turn;
             checkWin();
             if(!gameover){ //if game is not over keep playing
@@ -73,7 +100,9 @@ Array.from(cells).forEach(cell=>{
             }
             else{ //if gameover
                 document.getElementById("info").innerText = `${turn} WON GAME`;
-                setTimeout(resetGame, 3000); //using () in function fires it up immidialtely
+                document.getElementById("winner").style.display="block";
+                setTimeout(resetGame, 3000);
+                console.log("gameover")
             }
 
         }
