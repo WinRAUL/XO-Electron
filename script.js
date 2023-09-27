@@ -16,7 +16,7 @@ const playBg = ()=>{
     bgMusic.currentTime = 0;
     bgMusic = bgSounds[Math.floor(Math.random() * bgSounds.length)]
     bgMusic.play()
-    if(audioFlag == false)
+    if(audioPlaying == false)
         bgMusic.muted = true;
 }
 let winMusic = winSounds[0];
@@ -24,22 +24,20 @@ const playWin = ()=>{
     bgMusic.pause();
     winMusic = winSounds[Math.floor(Math.random() * winSounds.length)]
     winMusic.play();
-    if(audioFlag==false)
+    if(audioPlaying==false)
         winMusic.muted = true;
 }
-let audioFlag = true; //default in 'on'
+let audioPlaying = true; //default in 'on'
 const soundImages = ['volume-up-fill.svg','volume-mute-fill.svg',0];
+const charImages = ['buriburizaemon.png','sinchain.png',0];
 // eslint-disable-next-line no-unused-vars
 const toggleAudio = ()=>{
-    audioFlag = !audioFlag
-    bgMusic.muted = audioFlag
-    winMusic.muted = audioFlag
-    
+    bgMusic.muted = audioPlaying //to mute if audio is playing
+    winMusic.muted = audioPlaying
+    audioPlaying = !audioPlaying
     soundImages[2] = (soundImages[2] == 0) ? 1 : 0; //toggle index
     const soundControl = document.querySelector("#soundControl img");
     soundControl.src=`/assets/${soundImages[soundImages[2]]}`;
-
-
 }
 
 window.addEventListener("load", () => {
@@ -52,11 +50,14 @@ setInterval(() => {
 }, 3000);
 
 const changeTurn = ()=>{
+    charImages[2] = (charImages[2]==0)?1:0; //toggle image
     return turn === "X"?"0":"X";
 }
 
 const resetGame = ()=>{
-    document.querySelectorAll(".boxText").forEach(e=>e.innerHTML = '');
+    document.querySelectorAll(".cell").forEach(e=>
+        e.innerHTML = `<span class="boxText" hidden></span><img class="characterImg">`
+    );
     document.getElementById("winner").style.display="none";
     turn = "X"
     document.getElementById("info").innerText = "Turn : "+turn;
@@ -87,14 +88,15 @@ const checkWin = ()=>{
         }
     })
 }
-let cells = document.getElementsByClassName("cell");
-Array.from(cells).forEach(cell=>{
-    let boxText = cell.querySelector(".boxText")
+const board = document.getElementById("board").children;    //entrypoint
+Array.from(board).forEach(cell=>{
     cell.addEventListener('click', ()=>{
+        const boxText = cell.firstChild;
         if(boxText.innerText === '' && gameover === false){
             boxText.innerText = turn;
+            boxText.nextSibling.src= `assets/${charImages[charImages[2]]}`;
             checkWin();
-            if(!gameover){ //if game is not over keep playing
+            if(!gameover){ //game not over keep changing turns
                 turn = changeTurn();
                 document.getElementById("info").innerText = "Turn : "+turn;
             }
@@ -104,7 +106,6 @@ Array.from(cells).forEach(cell=>{
                 setTimeout(resetGame, 3000);
                 console.log("gameover")
             }
-
         }
     })
 })

@@ -5,7 +5,9 @@
 body{
     width: 100vw;
     height: 100vh;
-    background-color: rgba(142, 249, 19, 0.831);
+    background-image: url('assets/bg_img1.jpg');
+    background-repeat: repeat;
+    background-size: contain;
 }
 .container{
     display: flex;
@@ -13,16 +15,14 @@ body{
     justify-content: center;
     align-items: center;
 }
-.board {
+#board {
     display: grid;
     grid-template-columns: repeat(3, auto);
     gap: 5px;
     border: 2px solid #333;
-    background-color: #ff00008f;
+    background-color: #ff00009d;
     padding: 5px;
     margin: 5vw;
-    width: fit-content;
-    height: fit-content;
 }
 .cell {
     display: inherit;
@@ -38,6 +38,9 @@ body{
 .cell:hover{
     background-color: aquamarine;
 }
+characterImg{
+    height: 10vh;
+}
 
 .gameinfo{
     display: flex;
@@ -45,30 +48,38 @@ body{
     justify-items: center;
     align-items: center;
     padding: 20px;
-    background-color: rgb(41 61 94);;
+    background-color: rgba(41, 61, 94, 0.63);
     width: fit-content;
+    border-radius:  20px;
 }
 .gameinfo *{
-    align-items: center;
     margin: 3px;
-    padding: 10px;
+    border-radius:  20px;
     background-color: aqua;
+    align-items: center;
 }
 #info{
     color: rgb(95, 67, 16);
     font-size: 4vh;
-    width: fit-content;
-    height: fit-content;
+    padding: 10px;
+}
+#soundControl img{
+    height: 3vw;
+    padding: 5px;
 }
 h1{
     font-size: 6vh;
+    padding: 10px;
+
 }
 #reset{
     width : fit-content;
     height : fit-content;
     font-size: 4vh;
+    margin: 3px;
+    padding: 10px;
     border-radius: 10px;
-    background-color: #ddff4d;
+    background-color: #4dff88d2;
 }
 #winner{
     display: none;
