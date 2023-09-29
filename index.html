@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document index.html</title>
+    <script  type="module" src="script.mjs"></script>
+    <title>Tic Tac Toe</title>
 </head>
 <body>
     <div class="container">
@@ -12,13 +13,13 @@
             <h1>Welcome to tic tac toe</h1>
             <span id="info">Turn : X</span><br>
             <div style="display: flex; background-color: #1c376e; width: 100%; justify-content: center;">
-                <button id="reset" onclick="resetGame()">Reset</button>
-                <div id="soundControl" onclick="toggleAudio()" >
-                    <img src="/assets/volume-up-fill.svg"  alt="mute/unmute">
+                <button id="reset">Reset</button>
+                <div id="soundControl">
+                    <img src="assets/volume-up-fill.svg"  alt="mute/unmute">
                 </div>
             </div>
         </div>
-        <div id="winner" class="shadow">winner winner chiken dinner</div>
+        <div id="winner" class="shadow">“Ab mai itna bhi kuch khaas nhi”</div>
         <div id="board">
             <div class="cell"><span class="boxText" hidden></span><img class="characterImg"></div>
             <div class="cell"><span class="boxText" hidden></span><img class="characterImg"></div>
@@ -33,4 +34,3 @@
     </div>
 </body>
 </html>
-<script src="script.js"></script>

@@ -108,10 +108,7 @@ width: calc(100% + 4px);
 height: calc(100% + 4px);
 z-index: -1;
 animation: animate 5s linear infinite;
-}
-
-.shadow::after {
-    filter: blur(25px);
+filter: blur(25px);
 }
 
 @keyframes animate {

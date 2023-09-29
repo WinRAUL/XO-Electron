@@ -5,12 +5,14 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "build": "npx electron-packager . tic-tac-toe --platform=win32 --asar --icon=./assets/favicon.ico --overwrite"
   },
   "author": "rahul",
   "license": "MIT",
   "devDependencies": {
     "electron": "^26.2.2",
+    "electron-packager": "^17.1.2",
     "eslint": "^8.49.0"
   }
 }

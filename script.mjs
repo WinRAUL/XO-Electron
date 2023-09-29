@@ -37,8 +37,9 @@ const toggleAudio = ()=>{
     audioPlaying = !audioPlaying
     soundImages[2] = (soundImages[2] == 0) ? 1 : 0; //toggle index
     const soundControl = document.querySelector("#soundControl img");
-    soundControl.src=`/assets/${soundImages[soundImages[2]]}`;
+    soundControl.src=`assets/${soundImages[soundImages[2]]}`;
 }
+document.getElementById('soundControl').addEventListener('click',toggleAudio);
 
 window.addEventListener("load", () => {
     playBg();
@@ -64,6 +65,7 @@ const resetGame = ()=>{
     console.log("game reset");
     gameover = false;
 }
+document.getElementById('reset').addEventListener('click',resetGame);
 
 const wins = [
     [0,1,2],
