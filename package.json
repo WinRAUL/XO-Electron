@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "build": "npx electron-packager . tic-tac-toe --platform=win32 --asar --icon=./assets/favicon.ico --overwrite"
+    "build-win": "npx electron-packager . tic-tac-toe --platform=win32 --asar --icon=./assets/favicon.ico --overwrite",
+    "build-mac": "npx electron-packager . tic-tac-toe --platform=darwin --asar --icon=./assets/favicon.ico --overwrite",
+    "build-linux": "npx electron-packager . tic-tac-toe --platform=linux --asar --icon=./assets/favicon.ico --overwrite"
   },
   "author": "rahul",
   "license": "MIT",
